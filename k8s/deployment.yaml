@@ -1,0 +1,40 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: argo-prueba1
+  namespace: default
+  labels:
+    app: argo-prueba1
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: argo-prueba1
+  template:
+    metadata:
+      labels:
+        app: argo-prueba1
+    spec:
+      containers:
+        - name: argo-prueba1
+          image: supercastu/argo-prueba1:v1.0
+          imagePullPolicy: IfNotPresent
+          ports:
+            - name: http
+              containerPort: 8000
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: argo-prueba1
+  namespace: default
+  labels:
+    app: argo-prueba1
+spec:
+  type: ClusterIP
+  selector:
+    app: argo-prueba1
+  ports:
+    - name: http
+      port: 8000
+      targetPort: http
