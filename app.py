@@ -5,4 +5,4 @@ app = FastAPI(title="argo-prueba1")
 
 @app.get("/")
 def leer_raiz() -> dict[str, str]:
-    return {"message": "Hola mundo"}
+    return {"message": "Hola mundo estamos creando una aplicación con FastAPI y ArgoCD"}
